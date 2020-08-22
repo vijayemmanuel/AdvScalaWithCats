@@ -1,30 +1,6 @@
 package Ch1
 
 final case class Cat (name: String, age: Int, color: String)
-
-
-object PrintableInstances {
-  import Ch1.Printable
-  implicit object StringPrintable extends Printable[String] {
-    def format(x: String) = x.toString
-  }
-
-  implicit object IntPrintable extends Printable[Int] {
-    def format(x: Int): String = x.toString()
-  }
-  // Or use the below way to implement
-  //implicit val IntPritable = new Printable[Int] {
-  //  def format[Int](x: Int): String = x.toString()
-  //}
-
-  implicit val catPrintable = new Printable[Cat] {
-    def format(x: Cat): String = {
-      s"${x.name} is a ${x.age} year-old ${x.color} cat"
-    }
-  }
-}
-
-
 object Ch1 {
 
   // Typeclass Printable
@@ -66,6 +42,30 @@ object Ch1 {
 
 
 }
+
+object PrintableInstances {
+  import Ch1.Printable
+  implicit object StringPrintable extends Printable[String] {
+    def format(x: String) = x.toString
+  }
+
+  implicit object IntPrintable extends Printable[Int] {
+    def format(x: Int): String = x.toString()
+  }
+  // Or use the below way to implement
+  //implicit val IntPritable = new Printable[Int] {
+  //  def format[Int](x: Int): String = x.toString()
+  //}
+
+  implicit val catPrintable = new Printable[Cat] {
+    def format(x: Cat): String = {
+      s"${x.name} is a ${x.age} year-old ${x.color} cat"
+    }
+  }
+}
+
+
+
 
 
   object Main {
